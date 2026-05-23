@@ -13,3 +13,6 @@
 - MySQL 8
 - Maven
 - Spring Security
+
+## Author
+Mohit Kumar
