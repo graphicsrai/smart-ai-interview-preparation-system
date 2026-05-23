@@ -146,10 +146,12 @@ src/main/java/interview_prep_system
 
 ---
 
-## Upcoming Features
+
 
 ### Day 3
-- PDF Text Extraction using Apache PDFBox
+- PDF Text Extraction & Skill Extraction Module
+
+## Upcoming Features
 
 ### Day 4
 - Skill Extraction Engine

@@ -12,6 +12,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import java.io.File;
 @Service
 public class ResumeService {
 
@@ -53,5 +57,27 @@ public class ResumeService {
                 savedResume.getId(),
                 savedResume.getFileName(),
                 "Uploaded Successfully");
+    }
+
+    public String extractText(Long resumeId) throws Exception {
+
+        Resume resume = resumeRepository
+                .findById(resumeId)
+                .orElseThrow(() ->
+                        new RuntimeException("Resume not found"));
+
+        File pdfFile = new File(resume.getFilePath());
+
+        PDDocument document = Loader.loadPDF(pdfFile);
+
+        PDFTextStripper stripper = new PDFTextStripper();
+
+        String text = stripper.getText(document)
+                .replaceAll("\\s+", " ")
+                .trim();
+
+        document.close();
+
+        return text;
     }
 }
