@@ -151,10 +151,18 @@ src/main/java/interview_prep_system
 ### Day 3
 - PDF Text Extraction & Skill Extraction Module
 
-## Upcoming Features
 
 ### Day 4
-- Skill Extraction Engine
+- ATS Analysis Module
+
+- ATS Score Calculation
+- ATS Rating (Excellent/Good/Average)
+- Missing Skills Detection
+- Resume Improvement Suggestions
+
+
+## Upcoming Features
+
 
 ### Day 5
 - ATS Score Calculator

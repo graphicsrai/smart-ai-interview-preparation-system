@@ -7,6 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 import interview_prep_system.dto.ResumeTextResponse;
 import interview_prep_system.dto.SkillResponse;
 import interview_prep_system.service.SkillService;
+import interview_prep_system.dto.AtsScoreResponse;
+import interview_prep_system.service.AtsService;
+
 @RestController
 @RequestMapping("/api/resume")
 @CrossOrigin("*")
@@ -14,12 +17,16 @@ public class ResumeController {
 
     private final ResumeService resumeService;
     private final SkillService skillService;
+
+    private final AtsService atsService;
     public ResumeController(
             ResumeService resumeService,
-            SkillService skillService) {
+            SkillService skillService,
+            AtsService atsService) {
 
         this.resumeService = resumeService;
         this.skillService = skillService;
+        this.atsService = atsService;
     }
 
     @PostMapping("/upload")
@@ -51,5 +58,22 @@ public class ResumeController {
         return new SkillResponse(
                 skillService.extractSkillsFromResume(
                         resumeText));
+    }
+
+    @GetMapping("/{id}/ats-score")
+    public AtsScoreResponse getAtsScore(
+            @PathVariable Long id)
+            throws Exception {
+
+        String resumeText =
+                resumeService.extractText(id);
+
+        var skills =
+                skillService.extractSkillsFromResume(
+                        resumeText);
+
+        return atsService.calculateScore(
+                resumeText,
+                skills);
     }
 }
