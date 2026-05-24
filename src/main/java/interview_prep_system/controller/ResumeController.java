@@ -14,6 +14,10 @@ import interview_prep_system.service.ResumeRecommendationService;
 import interview_prep_system.dto.InterviewQuestionResponse;
 import interview_prep_system.service.InterviewQuestionService;
 import interview_prep_system.dto.InterviewQuestion;
+
+import interview_prep_system.dto.AnswerEvaluationRequest;
+import interview_prep_system.dto.AnswerEvaluationResponse;
+import interview_prep_system.service.AnswerEvaluationService;
 @RestController
 @RequestMapping("/api/resume")
 @CrossOrigin("*")
@@ -25,18 +29,21 @@ public class ResumeController {
     private final AtsService atsService;
     private final ResumeRecommendationService recommendationService;
     private final InterviewQuestionService interviewQuestionService;
+    private final AnswerEvaluationService answerEvaluationService;
     public ResumeController(
             ResumeService resumeService,
             SkillService skillService,
             AtsService atsService,
             ResumeRecommendationService recommendationService,
-            InterviewQuestionService interviewQuestionService) {
+            InterviewQuestionService interviewQuestionService,
+            AnswerEvaluationService answerEvaluationService) {
 
         this.resumeService = resumeService;
         this.skillService = skillService;
         this.atsService = atsService;
         this.recommendationService = recommendationService;
         this.interviewQuestionService = interviewQuestionService;
+        this.answerEvaluationService = answerEvaluationService;
     }
 
     @PostMapping("/upload")
@@ -135,5 +142,16 @@ public class ResumeController {
                 questions.size(),
                 (int) skillsCovered,
                 questions);
+    }
+    @PostMapping("/interview/evaluate")
+    public AnswerEvaluationResponse evaluateAnswer(
+            @RequestBody AnswerEvaluationRequest request) {
+
+        return answerEvaluationService.evaluateAnswer(
+                request.getSkill(),
+                request.getDifficulty(),
+                request.getQuestion(),
+                request.getAnswer()
+        );
     }
 }

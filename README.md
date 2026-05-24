@@ -231,9 +231,16 @@ Sample Response:
 }
 ```
 
-### Day 7
-- Dashboard & Analytics
+### Day 7 - Answer Evaluation Engine
 
+Features:
+- Answer scoring
+- Interview feedback
+- Strength analysis
+- Improvement suggestions
+
+API:
+POST /api/resume/interview/evaluate
 ---
 
 ## Author
