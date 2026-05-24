@@ -195,8 +195,41 @@ Sample Response:
 }
 ```
 
-### Day 6
-- AI Interview Question Generator
+### Day 6 - Interview Question Generator
+
+#### Features
+- Skill-based interview question generation
+- Random question selection
+- Easy, Medium and Hard difficulty levels
+- Multiple questions per skill
+- Dynamic interview preparation workflow
+
+#### Supported Skills
+- Java
+- Spring Boot
+- React.js
+- MySQL
+- Microservices
+
+#### Interview Questions API
+
+GET /api/resume/{id}/interview-questions
+
+Sample Response:
+
+```json
+{
+  "totalQuestions": 15,
+  "skillsCovered": 5,
+  "questions": [
+    {
+      "skill": "Java",
+      "difficulty": "Medium",
+      "question": "What is the difference between HashMap and ConcurrentHashMap?"
+    }
+  ]
+}
+```
 
 ### Day 7
 - Dashboard & Analytics
