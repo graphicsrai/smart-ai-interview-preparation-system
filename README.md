@@ -161,11 +161,39 @@ src/main/java/interview_prep_system
 - Resume Improvement Suggestions
 
 
-## Upcoming Features
+### Day 5 - Smart Resume Recommendation Module
 
+#### Resume Recommendation Engine
+- Generate personalized resume feedback
+- Analyze ATS score and detected skills
+- Identify missing technical skills
+- Provide actionable improvement suggestions
 
-### Day 5
-- ATS Score Calculator
+#### Recommendation Features
+- Docker skill recommendations
+- Cloud technology recommendations (AWS/Azure)
+- Build tool recommendations (Maven/Gradle)
+- Achievement-based resume improvements
+- GitHub portfolio recommendations
+
+#### Recommendation API
+
+GET /api/resume/{id}/recommendations
+
+Sample Response:
+
+```json
+{
+  "overallFeedback": "Strong resume with excellent technical profile and industry experience.",
+  "recommendations": [
+    "Add Docker experience to demonstrate containerization skills.",
+    "Include AWS or Azure projects to strengthen cloud expertise.",
+    "Mention Maven or Gradle build tools in technical skills.",
+    "Include measurable achievements such as performance improvements or delivery metrics.",
+    "Provide GitHub project links to strengthen your technical profile."
+  ]
+}
+```
 
 ### Day 6
 - AI Interview Question Generator

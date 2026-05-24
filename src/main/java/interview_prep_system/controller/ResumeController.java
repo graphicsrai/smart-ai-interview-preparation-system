@@ -9,7 +9,8 @@ import interview_prep_system.dto.SkillResponse;
 import interview_prep_system.service.SkillService;
 import interview_prep_system.dto.AtsScoreResponse;
 import interview_prep_system.service.AtsService;
-
+import interview_prep_system.dto.ResumeRecommendationResponse;
+import interview_prep_system.service.ResumeRecommendationService;
 @RestController
 @RequestMapping("/api/resume")
 @CrossOrigin("*")
@@ -19,14 +20,17 @@ public class ResumeController {
     private final SkillService skillService;
 
     private final AtsService atsService;
+    private final ResumeRecommendationService recommendationService;
     public ResumeController(
             ResumeService resumeService,
             SkillService skillService,
-            AtsService atsService) {
+            AtsService atsService,
+            ResumeRecommendationService recommendationService) {
 
         this.resumeService = resumeService;
         this.skillService = skillService;
         this.atsService = atsService;
+        this.recommendationService = recommendationService;
     }
 
     @PostMapping("/upload")
@@ -75,5 +79,29 @@ public class ResumeController {
         return atsService.calculateScore(
                 resumeText,
                 skills);
+    }
+
+    @GetMapping("/{id}/recommendations")
+    public ResumeRecommendationResponse getRecommendations(
+            @PathVariable Long id)
+            throws Exception {
+
+        String resumeText =
+                resumeService.extractText(id);
+
+        var skills =
+                skillService.extractSkillsFromResume(
+                        resumeText);
+
+        var atsResult =
+                atsService.calculateScore(
+                        resumeText,
+                        skills);
+
+        return recommendationService.generateRecommendations(
+                atsResult.getAtsScore(),
+                atsResult.getMatchedSkills(),
+                atsResult.getMissingSkills()
+        );
     }
 }
