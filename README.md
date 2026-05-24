@@ -242,7 +242,38 @@ Features:
 API:
 POST /api/resume/interview/evaluate
 ---
+### Day 8 - Dashboard & Analytics Module
 
+#### Features
+- Dashboard Summary API
+- Real Interview Analytics
+- Skill Performance Analytics
+- Recent Interview History
+- Interview Attempt Persistence
+- Average Score Calculation
+- Highest and Lowest Score Tracking
+
+#### APIs
+
+GET /api/resume/dashboard/summary
+
+GET /api/resume/dashboard/analytics
+
+GET /api/resume/dashboard/skills
+
+GET /api/resume/dashboard/history
+
+#### Sample Analytics Response
+
+```json
+{
+  "totalResumes": 2,
+  "totalInterviewAttempts": 1,
+  "averageInterviewScore": 10.0,
+  "highestScore": 10,
+  "lowestScore": 10
+}
+```
 ## Author
 
 Mohit Kumar

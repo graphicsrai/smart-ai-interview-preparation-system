@@ -6,9 +6,19 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import interview_prep_system.entity.InterviewAttempt;
+import interview_prep_system.repository.InterviewAttemptRepository;
+import java.time.LocalDateTime;
+
 @Service
 public class AnswerEvaluationService {
+    private final InterviewAttemptRepository interviewAttemptRepository;
+    public AnswerEvaluationService(
+            InterviewAttemptRepository interviewAttemptRepository) {
 
+        this.interviewAttemptRepository =
+                interviewAttemptRepository;
+    }
     public AnswerEvaluationResponse evaluateAnswer(
             String skill,
             String difficulty,
@@ -69,7 +79,18 @@ public class AnswerEvaluationService {
             feedback =
                     "Weak answer. Expand the explanation and include key concepts.";
         }
+        InterviewAttempt attempt =
+                new InterviewAttempt();
 
+        attempt.setSkill(skill);
+        attempt.setDifficulty(difficulty);
+        attempt.setQuestion(question);
+        attempt.setAnswer(answer);
+        attempt.setScore(score);
+        attempt.setFeedback(feedback);
+        attempt.setCreatedAt(LocalDateTime.now());
+
+        interviewAttemptRepository.save(attempt);
         return new AnswerEvaluationResponse(
                 score,
                 feedback,
