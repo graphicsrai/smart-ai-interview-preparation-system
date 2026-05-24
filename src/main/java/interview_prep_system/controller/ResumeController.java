@@ -18,6 +18,10 @@ import interview_prep_system.dto.InterviewQuestion;
 import interview_prep_system.dto.AnswerEvaluationRequest;
 import interview_prep_system.dto.AnswerEvaluationResponse;
 import interview_prep_system.service.AnswerEvaluationService;
+
+import interview_prep_system.dto.DashboardSummaryResponse;
+import interview_prep_system.service.DashboardService;
+import interview_prep_system.dto.DashboardAnalyticsResponse;
 @RestController
 @RequestMapping("/api/resume")
 @CrossOrigin("*")
@@ -30,13 +34,16 @@ public class ResumeController {
     private final ResumeRecommendationService recommendationService;
     private final InterviewQuestionService interviewQuestionService;
     private final AnswerEvaluationService answerEvaluationService;
+
+    private final DashboardService dashboardService;
     public ResumeController(
             ResumeService resumeService,
             SkillService skillService,
             AtsService atsService,
             ResumeRecommendationService recommendationService,
             InterviewQuestionService interviewQuestionService,
-            AnswerEvaluationService answerEvaluationService) {
+            AnswerEvaluationService answerEvaluationService,
+            DashboardService dashboardService) {
 
         this.resumeService = resumeService;
         this.skillService = skillService;
@@ -44,6 +51,7 @@ public class ResumeController {
         this.recommendationService = recommendationService;
         this.interviewQuestionService = interviewQuestionService;
         this.answerEvaluationService = answerEvaluationService;
+        this.dashboardService = dashboardService;
     }
 
     @PostMapping("/upload")
@@ -153,5 +161,16 @@ public class ResumeController {
                 request.getQuestion(),
                 request.getAnswer()
         );
+    }
+
+    @GetMapping("/dashboard/summary")
+    public DashboardSummaryResponse getDashboardSummary() {
+
+        return dashboardService.getSummary();
+    }
+    @GetMapping("/dashboard/analytics")
+    public DashboardAnalyticsResponse getDashboardAnalytics() {
+
+        return dashboardService.getAnalytics();
     }
 }

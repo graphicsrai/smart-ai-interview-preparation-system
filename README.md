@@ -242,7 +242,18 @@ Features:
 API:
 POST /api/resume/interview/evaluate
 ---
+### Day 8 - Dashboard Analytics
 
+Features:
+- Dashboard Summary API
+- Interview Attempt Persistence
+- Real Analytics Dashboard
+- Average Score Calculation
+- Highest and Lowest Score Tracking
+
+APIs:
+GET /api/resume/dashboard/summary
+GET /api/resume/dashboard/analytics
 ## Author
 
 Mohit Kumar
