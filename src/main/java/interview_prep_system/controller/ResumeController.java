@@ -22,6 +22,12 @@ import interview_prep_system.service.AnswerEvaluationService;
 import interview_prep_system.dto.DashboardSummaryResponse;
 import interview_prep_system.service.DashboardService;
 import interview_prep_system.dto.DashboardAnalyticsResponse;
+
+import interview_prep_system.dto.SkillPerformanceResponse;
+import java.util.List;
+
+import interview_prep_system.dto.InterviewHistoryResponse;
+import java.util.List;
 @RestController
 @RequestMapping("/api/resume")
 @CrossOrigin("*")
@@ -172,5 +178,17 @@ public class ResumeController {
     public DashboardAnalyticsResponse getDashboardAnalytics() {
 
         return dashboardService.getAnalytics();
+    }
+
+    @GetMapping("/dashboard/skills")
+    public List<SkillPerformanceResponse> getSkillPerformance() {
+
+        return dashboardService.getSkillPerformance();
+    }
+
+    @GetMapping("/dashboard/history")
+    public List<InterviewHistoryResponse> getRecentHistory() {
+
+        return dashboardService.getRecentHistory();
     }
 }
