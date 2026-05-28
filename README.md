@@ -274,6 +274,36 @@ GET /api/resume/dashboard/history
   "lowestScore": 10
 }
 ```
+### Day 9 - JWT Authentication & Security
+
+#### Features
+- JWT Token Generation
+- JWT Validation Filter
+- Protected REST APIs
+- Spring Security Integration
+- Authorization Header Validation
+
+#### Public APIs
+
+POST /api/auth/register
+
+POST /api/auth/login
+
+#### Protected APIs
+
+GET /api/resume/dashboard/analytics
+
+GET /api/resume/dashboard/history
+
+GET /api/resume/dashboard/skills
+
+GET /api/resume/dashboard/summary
+
+#### Sample Authorization Header
+
+Authorization: Bearer eyJhbGciOiJIUzI1Ni...
+
+
 ## Author
 
 Mohit Kumar

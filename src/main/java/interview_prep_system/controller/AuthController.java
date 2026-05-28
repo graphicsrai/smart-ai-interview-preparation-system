@@ -6,15 +6,21 @@ import interview_prep_system.service.UserService;
 import org.springframework.web.bind.annotation.*;
 import interview_prep_system.dto.LoginRequest;
 import org.springframework.http.ResponseEntity;
+import interview_prep_system.security.JwtService;
+import interview_prep_system.dto.LoginResponse;
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin("*")
 public class AuthController {
 
     private final UserService userService;
+    private final JwtService jwtService;
+    public AuthController(
+            UserService userService,
+            JwtService jwtService) {
 
-    public AuthController(UserService userService) {
         this.userService = userService;
+        this.jwtService = jwtService;
     }
 
     @PostMapping("/register")
@@ -29,9 +35,15 @@ public class AuthController {
             @RequestBody LoginRequest request) {
 
         try {
-            String response = userService.login(request);
 
-            return ResponseEntity.ok(response);
+            userService.login(request);
+
+            String token =
+                    jwtService.generateToken(
+                            request.getEmail());
+
+            return ResponseEntity.ok(
+                    new LoginResponse(token));
 
         } catch (RuntimeException ex) {
 
