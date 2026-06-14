@@ -19,9 +19,10 @@ public interface InterviewAttemptRepository
     @Query("SELECT MIN(i.score) FROM InterviewAttempt i")
     Integer getLowestScore();
     @Query("""
-       SELECT i.skill
+       SELECT DISTINCT i.skill
        FROM InterviewAttempt i
-       GROUP BY i.skill
+       WHERE i.skill IS NOT NULL
+       AND i.skill <> ''
        """)
     List<String> findAllSkills();
     @Query("""

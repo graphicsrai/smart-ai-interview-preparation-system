@@ -63,7 +63,9 @@ public class DashboardService {
         return new DashboardAnalyticsResponse(
                 totalResumes,
                 totalInterviewAttempts,
-                averageScore != null ? averageScore : 0.0,
+                averageScore != null
+                        ? Math.round(averageScore * 100.0) / 100.0
+                        : 0.0,
                 highestScore != null ? highestScore : 0,
                 lowestScore != null ? lowestScore : 0
         );
@@ -78,6 +80,10 @@ public class DashboardService {
                 interviewAttemptRepository.findAllSkills();
 
         for (String skill : skills) {
+
+            if (skill == null || skill.isBlank()) {
+                continue;
+            }
 
             long attempts =
                     interviewAttemptRepository

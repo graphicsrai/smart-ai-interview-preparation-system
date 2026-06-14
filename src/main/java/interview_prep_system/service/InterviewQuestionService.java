@@ -48,37 +48,37 @@ public class InterviewQuestionService {
                                     "What is the difference between @Component and @Bean?")
                     ),
 
-                    "React.js", List.of(
-                            new InterviewQuestion("React.js", "Easy",
+                    "React", List.of(
+                            new InterviewQuestion("React", "Easy",
                                     "What is JSX?"),
 
-                            new InterviewQuestion("React.js", "Medium",
+                            new InterviewQuestion("React", "Medium",
                                     "What is useEffect?"),
 
-                            new InterviewQuestion("React.js", "Medium",
+                            new InterviewQuestion("React", "Medium",
                                     "Difference between State and Props?"),
 
-                            new InterviewQuestion("React.js", "Hard",
+                            new InterviewQuestion("React", "Hard",
                                     "What is Virtual DOM?"),
 
-                            new InterviewQuestion("React.js", "Hard",
+                            new InterviewQuestion("React", "Hard",
                                     "Explain React Reconciliation.")
                     ),
 
-                    "MySQL", List.of(
-                            new InterviewQuestion("MySQL", "Easy",
+                    "SQL", List.of(
+                            new InterviewQuestion("SQL", "Easy",
                                     "What is a primary key?"),
 
-                            new InterviewQuestion("MySQL", "Medium",
+                            new InterviewQuestion("SQL", "Medium",
                                     "What is normalization?"),
 
-                            new InterviewQuestion("MySQL", "Medium",
+                            new InterviewQuestion("SQL", "Medium",
                                     "What are joins in SQL?"),
 
-                            new InterviewQuestion("MySQL", "Hard",
+                            new InterviewQuestion("SQL", "Hard",
                                     "What is indexing?"),
 
-                            new InterviewQuestion("MySQL", "Hard",
+                            new InterviewQuestion("SQL", "Hard",
                                     "Explain ACID properties.")
                     ),
 
@@ -97,6 +97,54 @@ public class InterviewQuestionService {
 
                             new InterviewQuestion("Microservices", "Hard",
                                     "Explain circuit breaker pattern.")
+                    ),
+                    "JPA", List.of(
+                            new InterviewQuestion("JPA", "Easy",
+                                    "What is JPA?"),
+
+                            new InterviewQuestion("JPA", "Medium",
+                                    "Difference between JPA and Hibernate?"),
+
+                            new InterviewQuestion("JPA", "Hard",
+                                    "What is the N+1 query problem?")
+                    ),
+                    "JavaScript", List.of(
+                            new InterviewQuestion("JavaScript", "Easy",
+                                    "What is hoisting?"),
+
+                            new InterviewQuestion("JavaScript", "Medium",
+                                    "Difference between var, let and const?"),
+
+                            new InterviewQuestion("JavaScript", "Hard",
+                                    "Explain closures.")
+                    ),
+                    "HTML", List.of(
+                            new InterviewQuestion("HTML", "Easy",
+                                    "What are semantic tags?"),
+
+                            new InterviewQuestion("HTML", "Medium",
+                                    "Difference between div and span?"),
+
+                            new InterviewQuestion("HTML", "Hard",
+                                    "Explain local storage and session storage.")
+                    ),"CSS", List.of(
+                            new InterviewQuestion("CSS", "Easy",
+                                    "What is the box model?"),
+
+                            new InterviewQuestion("CSS", "Medium",
+                                    "Difference between relative and absolute positioning?"),
+
+                            new InterviewQuestion("CSS", "Hard",
+                                    "Explain Flexbox and Grid.")
+                    ),"Spring MVC", List.of(
+                            new InterviewQuestion("Spring MVC", "Easy",
+                                    "What is Spring MVC?"),
+
+                            new InterviewQuestion("Spring MVC", "Medium",
+                                    "Explain DispatcherServlet."),
+
+                            new InterviewQuestion("Spring MVC", "Hard",
+                                    "How does request mapping work?")
                     )
             );
     public List<InterviewQuestion> generateQuestions(
@@ -126,5 +174,10 @@ public class InterviewQuestionService {
         Collections.shuffle(selectedQuestions);
 
         return selectedQuestions;
+    }
+    public List<InterviewQuestion> generateQuestionsFromSkills(
+            List<String> skills) {
+
+        return generateQuestions(skills);
     }
 }

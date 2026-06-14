@@ -39,7 +39,11 @@ public class JwtAuthenticationFilter
         if (authHeader == null
                 || !authHeader.startsWith("Bearer ")) {
 
-            filterChain.doFilter(request, response);
+            filterChain.doFilter(
+                    request,
+                    response
+            );
+
             return;
         }
 
@@ -78,11 +82,10 @@ public class JwtAuthenticationFilter
 
         } catch (Exception ex) {
 
-            response.setStatus(
-                    HttpServletResponse.SC_UNAUTHORIZED);
-
-            response.getWriter()
-                    .write("Invalid JWT Token");
+            filterChain.doFilter(
+                    request,
+                    response
+            );
 
             return;
         }
